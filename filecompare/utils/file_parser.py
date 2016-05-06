@@ -6,6 +6,8 @@
 """FileParser class helps reading properties, xml, ymal, etc."""
 
 import logging
+from configparser import ConfigParser
+import codecs
 
 class FileParser():
     """FileParser class helps reading properties, xml, ymal, etc."""
@@ -13,6 +15,15 @@ class FileParser():
     # Create child logger
     logger = logging.getLogger('FileCompare' + __name__)
 
-    def __int__(self):
+    def __init__(self):
+        """FileParser initializer"""
         # Create child logger
         self.logger = logging.getLogger('FileCompare' + __name__)
+
+        parser = ConfigParser()
+
+        # Open file with the correct encoding
+        with codecs.open('../resources/config.properties', 'r', encoding='utf-8') as propFile:
+            parser.read_file(propFile)
+
+        self.git_url = parser.get('git', 'url')

@@ -8,6 +8,7 @@ different revisions"""
 
 import argparse
 import logging.config
+from filecompare.utils.file_parser import FileParser
 
 __author__ = 'Senthil Nayagan'
 __copyright__ = 'Copyright 2016, IntensiveCoding'
@@ -37,6 +38,9 @@ def main():
         cfg_file = CONFIG_FILE
 
     logger.info('FileCompare starts...')
+
+    fileParser = FileParser()
+    print(fileParser.git_url)
 
 
 
