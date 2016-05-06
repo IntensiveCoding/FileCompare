@@ -6,7 +6,8 @@
 """FileCompare is an utility to compare files between
 different revisions"""
 
-# import
+import argparse
+import logging.config
 
 __author__ = 'Senthil Nayagan'
 __copyright__ = 'Copyright 2016, IntensiveCoding'
@@ -17,4 +18,27 @@ __maintainer__ = 'Senthil Nayagan'
 __email__ = 'intensive.coding@gmail.com'
 __status__ = "Development"
 
+CONFIG_FILE = '../resources/file_compare'
 
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config-file', type=argparse.FileType('r'), help='Specify the config file')
+
+    args = parser.parse_args()
+
+    logging.config.fileConfig('../resources/logging.conf')
+
+    # Create logger
+    logger = logging.getLogger('FileCompare')
+
+    if args.config_file:
+        cfg_file = args.config_file
+    else:
+        cfg_file = CONFIG_FILE
+
+    logger.info('FileCompare starts...')
+
+
+
+if __name__ == '__main__':
+    main()
