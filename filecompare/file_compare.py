@@ -22,12 +22,16 @@ __status__ = "Development"
 CONFIG_FILE = '../resources/file_compare'
 
 def main():
+    """
+
+    :rtype: object
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--config-file', type=argparse.FileType('r'), help='Specify the config file')
 
     args = parser.parse_args()
 
-    logging.config.fileConfig('../resources/logging.conf')
+    logging.config.fileConfig('../resources/logging.conf', disable_existing_loggers=False)
 
     # Create logger
     logger = logging.getLogger('FileCompare')
@@ -41,7 +45,6 @@ def main():
 
     fileParser = FileParser()
     print(fileParser.git_url)
-
 
 
 if __name__ == '__main__':

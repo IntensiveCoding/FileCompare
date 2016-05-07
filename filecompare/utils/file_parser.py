@@ -13,12 +13,14 @@ class FileParser():
     """FileParser class helps reading properties, xml, ymal, etc."""
 
     # Create child logger
-    logger = logging.getLogger('FileCompare' + __name__)
+    logger = logging.getLogger('FileCompare.' + __name__)
 
     def __init__(self):
         """FileParser initializer"""
         # Create child logger
-        self.logger = logging.getLogger('FileCompare' + __name__)
+        self.logger = logging.getLogger('FileCompare.' + __name__)
+
+        self.logger.info('Initializing FileParser class...')
 
         parser = ConfigParser()
 
@@ -27,3 +29,5 @@ class FileParser():
             parser.read_file(propFile)
 
         self.git_url = parser.get('git', 'url')
+
+        self.logger.debug('Git URL: {url}'.format(url=self.git_url))
